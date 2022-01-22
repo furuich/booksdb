@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>BookS DB</title>
+</head>
+<h1>本検索システム</h1>
+
+<body>
+	<form th:action="@{/search}" th:object="${form}" method="post">
+
+		<!--検索フォーム作成-->
+		<table border="0" align="center">
+			<tr>
+				<td align="right">本　ID　：</td>
+				<td><input type="text" name="id" th:value="*{id}"></td>
+
+				<!--submit　ボタンを作成-->
+				<td align="right"><button type="submit" name="search">検索ッ</button></td>
+				
+				<!--改行をいれる文字-->
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<hr>
+
+		<!--検索結果の表示画面作成-->
+		<div th:if="*{bookInfo != null}">
+			<table border="0" align="center">
+				<td>
+					<table border="0" align="left">
+						<td align="right">検索結果</td>
+					</table>
+				</td>
+				<tr>
+					<td>
+						<table border="1" align="left">
+							<!--color は#98fb98　（ペールグリーン）-->
+							<td align="center" width="10" bgcolor="#98fb98">ID</td>
+							<td align="center" width="80" bgcolor="#98fb98">タイトル</td>
+							<td align="center" width="100" bgcolor="#98fb98">著者名</td>
+							<td align="center" width="30" bgcolor="#98fb98">ジャンル</td>
+							<td align="center" width="10" bgcolor="#98fb98">保管場所コード</td>
+
+							<!--上記の項目に対応する変数を設定-->
+							<tr>
+								<td align="right" width="10" th:text="*{bookInfo.id}">ｋ</td>
+								
+								
+								<td align="right" width="80" th:text="*{bookInfo.title}"></td>
+								<td align="right" width="100" th:text="*{bookInfo.author}"></td>
+								<td align="right" width="30" th:text="*{bookInfo.category}"></td>
+								<td align="right" width="10" th:text="*{bookInfo.depositoryCd}"></td>
+
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+</body>
+</html>
